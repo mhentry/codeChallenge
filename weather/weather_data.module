@@ -1,0 +1,50 @@
+<?php
+/**
+ * @file
+ *
+ * Implements a weather block.
+ */
+
+/**
+ * Implements hook_block_info().
+ */
+function weather_data_block_info() {
+  $blocks['weather_data'] = array(
+    'info' => t('Weather'),
+  );
+
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function weather_data_block_view($delta = '') {
+  $block = array();
+
+  switch ($delta) {
+    case 'weather_data':
+      $path = drupal_get_path('module', 'weather_data');
+      $block['subject'] = t('Weather');
+      $block['content'] = array(
+        '#theme' => 'weather_data',
+        '#attached' => array(
+          'js' => array( $path . '/weather_data.js'),
+        ),
+      );
+      break;
+  }
+  return $block;
+}
+
+/**
+ * Implements hook_theme().
+ */
+function weather_data_theme() {
+  return array(
+    'weather_data' => array(
+      'template' => 'weather-status',
+      'variables' => array(),
+    ),
+  );
+}

@@ -1,0 +1,3 @@
+name = Weather
+description = Display current temperature in a block based on user entered zip code.
+core = 7.x
